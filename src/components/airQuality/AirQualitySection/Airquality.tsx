@@ -1,21 +1,19 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import "chart.js/auto";
 import styles from "./airquality.module.css";
 import Section from "@/components/Section/Section";
 import Chart from "../AirQualityChart/Chart";
 import Field from "@/ui/Field/Field";
-
-// interface IAirQuality {
-//   date: string;
-//   pm10: string;
-//   o3: string;
-//   no2: string;
-//   pm25: string;
-//   index: string;
-// }
+import getCurrentDate from "@/libs/currentDate";
+import useDebounce from "@/hooks/useDebounce/useDebounce";
 
 const Airquality = () => {
+  const [startDate, setStartDate] = useState<string>("2023-09-26");
+  const [endDate, setEndDate] = useState<string>(getCurrentDate());
+  const start = useDebounce<string>(startDate, 2000);
+  const end = useDebounce<string>(endDate, 2000);
+
   return (
     <div>
       <Section style={{ width: "100%" }}>
@@ -25,20 +23,10 @@ const Airquality = () => {
             parameter='no2'
             type='line'
             key={1}
-            date={{ start: "2023-09-25", end: "2024-09-27" }}
+            date={{ start: start, end: end }}
           />
-          <Chart
-            parameter='pm10'
-            type='bar'
-            key={2}
-            date={{ start: "2023-10-10", end: "2023-11-10" }}
-          />
-          <Chart
-            parameter='pm25'
-            type='line'
-            key={3}
-            date={{ start: "2023-10-10", end: "2023-11-10" }}
-          />
+          <Chart parameter='pm10' type='bar' key={2} date={{ start, end }} />
+          <Chart parameter='pm25' type='line' key={3} date={{ start, end }} />
         </div>
         <div
           style={{
@@ -47,8 +35,19 @@ const Airquality = () => {
             alignItems: "center",
           }}
         >
-          <Field placeholder='start date' style={{ marginRight: "20px" }} />
-          <Field placeholder='end date' />
+          <Field
+            placeholder='start date'
+            style={{ marginRight: "20px" }}
+            type='date'
+            value={startDate}
+            onChange={e => setStartDate(e.target.value)}
+          />
+          <Field
+            placeholder='end date'
+            type='date'
+            value={endDate}
+            onChange={e => setEndDate(e.target.value)}
+          />
         </div>
       </Section>
     </div>
