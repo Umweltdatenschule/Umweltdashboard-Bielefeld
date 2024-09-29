@@ -1,0 +1,9 @@
+.Section {
+  border-radius: 10px;
+  padding: 10px;
+  margin: 15px;
+  box-shadow: 0 0 20px rgba(109, 109, 109, 0.342);
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
