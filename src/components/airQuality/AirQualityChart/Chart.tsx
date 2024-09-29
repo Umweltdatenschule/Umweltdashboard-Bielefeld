@@ -70,9 +70,9 @@ const Chart: FC<props> = ({ type, parameter, date }) => {
         {!data || error ? (
           <div>there is no data</div>
         ) : type === "bar" ? (
-          <Bar data={chartData} style={{ width: "500px", height: "500px" }} />
+          <Bar data={chartData} style={{ width: "450px", height: "500px" }} />
         ) : (
-          <Line data={chartData} style={{ width: "500px", height: "500px" }} />
+          <Line data={chartData} style={{ width: "450px", height: "500px" }} />
         )}
       </div>
     </Section>
