@@ -1,7 +1,37 @@
 import { NextRequest } from "next/server";
-
-const getGreenValues = async (startDate: string, endDate: string) => {
-  return new Promise<Record<string, string>[]>((resolve, reject) => {});
+import fs from "fs";
+import path from "path";
+import csv from "csv-parser";
+import parseDate from "@/libs/parseDate";
+const getGreenValues = async (start: string, end: string) => {
+  const paths = path.resolve(process.cwd(), "src/data/green_values.csv");
+  const startDate = new Date(start);
+  const endDate = new Date(end);
+  return new Promise<Record<string, number>[]>((resolve, reject) => {
+    const results: Record<string, number>[] = [];
+    fs.createReadStream(paths)
+      .pipe(csv())
+      .on("data", data => {
+        if (data && data.Date) {
+          const date = new Date(data.Date);
+          if (
+            date!.getTime() >= startDate.getTime() &&
+            date!.getTime() <= endDate.getTime()
+          ) {
+            results.push({
+              date: data.Date,
+              value: Number(data.GreenValue),
+            });
+          }
+        }
+      })
+      .on("end", () => {
+        resolve(results);
+      })
+      .on("error", error => {
+        reject(error);
+      });
+  });
 };
 
 export async function GET(request: NextRequest) {

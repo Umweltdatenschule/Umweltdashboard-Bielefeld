@@ -163,3 +163,72 @@ a.secondary {
     filter: invert();
   }
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 0 2rem;
+  background-color: #f0f4ff; /* Light blue background */
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #003366; /* Dark blue for titles */
+}
+
+.p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.button {
+  background-color: #0070f3;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.25rem;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #005bb5;
+}
+
+.creators {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.team {
+  display: flex;
+  justify-content: center;
+}
+
+.team-member {
+  margin: 0 1rem;
+}
+
+.team-member a {
+  display: block;
+  margin-top: 0.5rem;
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.team-member a:hover {
+  text-decoration: underline;
+}
