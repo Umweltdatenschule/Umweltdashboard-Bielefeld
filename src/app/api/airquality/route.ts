@@ -31,7 +31,7 @@ function parseDate(dateString: string) {
 
 const paths = path.resolve(process.cwd(), "src/data/airquality.csv");
 
-export const getAirQualityData = async (
+const getAirQualityData = async (
   parameter: string,
   start: string,
   end: string
