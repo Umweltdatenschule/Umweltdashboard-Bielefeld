@@ -4,7 +4,10 @@ import path from "path";
 import csv from "csv-parser";
 import parseDate from "@/libs/parseDate";
 const getGreenValues = async (start: string, end: string) => {
-  const paths = path.resolve(process.cwd(), "src/data/green_values.csv");
+  const paths = path.resolve(
+    process.cwd(),
+    "src/data/bielefeld/green_values.csv"
+  );
   const startDate = new Date(start);
   const endDate = new Date(end);
   return new Promise<Record<string, number>[]>((resolve, reject) => {

@@ -1,4 +1,4 @@
-import Section from "@/components/Section/Section";
+import Section from "@/ui/Section/Section";
 import { useFetch } from "@/hooks/useFetch/useFetch";
 import React, { FC, useEffect, useMemo, useState } from "react";
 import { Bar, Line } from "react-chartjs-2";
@@ -17,6 +17,7 @@ interface props {
   parameter: parameter;
   type: GraphType;
   date: date;
+  city: string;
 }
 
 interface response {
@@ -24,11 +25,11 @@ interface response {
   value: number;
 }
 
-const Chart: FC<props> = ({ type, parameter, date }) => {
+const Chart: FC<props> = ({ type, parameter, date, city }) => {
   const [data, setData] = useState<response[]>();
   const memoizedUrl = useMemo(
     () =>
-      `/api/airquality?parameter=${parameter}&start=${date.start}&end=${date.end}`,
+      `/api/airquality?parameter=${parameter}&start=${date.start}&end=${date.end}&city=${city}`,
     [parameter, date.start, date.end]
   );
   const {

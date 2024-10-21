@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 interface FetchOptions {
   method?: string;
@@ -11,15 +11,20 @@ export function useFetch<T>(url: string, options?: FetchOptions) {
   const [isPending, setIsPending] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  const memoizedOptions = useMemo(
+    () => options,
+    [options?.method, options?.headers, options?.body]
+  );
+
   useEffect(() => {
     const fetchData = async () => {
       setIsPending(true);
 
       try {
         const response = await fetch(url, {
-          method: options?.method || "GET",
-          headers: options?.headers,
-          body: options?.body ? JSON.stringify(options.body) : null,
+          method: memoizedOptions?.method || "GET",
+          headers: memoizedOptions?.headers,
+          body: memoizedOptions?.body ? memoizedOptions.body : null,
         });
 
         if (!response.ok) throw new Error(response.statusText);
@@ -35,7 +40,7 @@ export function useFetch<T>(url: string, options?: FetchOptions) {
     };
 
     fetchData();
-  }, [url, options]);
+  }, [url, memoizedOptions]);
 
   return { data, isPending, error };
 }

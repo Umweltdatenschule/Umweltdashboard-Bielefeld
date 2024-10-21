@@ -1,0 +1,22 @@
+.cities {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.city {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .city {
+    flex-basis: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .city {
+    flex-basis: 100%;
+  }
+}

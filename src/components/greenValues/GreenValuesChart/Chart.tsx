@@ -1,6 +1,6 @@
 "use client";
 
-import Section from "@/components/Section/Section";
+import Section from "@/ui/Section/Section";
 import { useFetch } from "@/hooks/useFetch/useFetch";
 import React, { FC, useEffect, useMemo, useState } from "react";
 import { Line } from "react-chartjs-2";
@@ -66,7 +66,7 @@ const Chart: FC<props> = date => {
   };
 
   return (
-    <Section style={{ width: "100%" }}>
+    <Section>
       <div
         style={{
           minHeight: "200px",

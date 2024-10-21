@@ -6,6 +6,13 @@ import Navbar from "@/components/navbar/Navbar";
 
 const inter = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
+const container = {
+  width: "100%",
+  maxWidth: "1600px",
+  margin: "0 auto",
+  padding: "1rem",
+};
+
 export const metadata: Metadata = {
   title: "stadtgesundheit",
   description: "stadtgesundheit project",
@@ -19,8 +26,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.className}`}>
-        <Navbar />
-        {children}
+        <div style={container}>
+          <Navbar />
+          {children}
+        </div>
       </body>
     </html>
   );

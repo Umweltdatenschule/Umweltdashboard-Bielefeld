@@ -1,10 +1,10 @@
 import React from "react";
-import Section from "../Section/Section";
+import Section from "../../ui/Section/Section";
 
 const Iframes = () => {
   return (
-    <div>
-      <Section style={{ width: "100%" }}>
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <Section>
         <h3>Gewässergüte-Messpunkte Bielefeld</h3>
         <div
           style={{
@@ -21,6 +21,7 @@ const Iframes = () => {
             data-external='1'
           />
         </div>
+        <iframe title='' id='' src='https://datawrapper.dwcdn.net/Hhma7/1/' />
       </Section>
     </div>
   );

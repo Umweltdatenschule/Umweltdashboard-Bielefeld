@@ -1,4 +1,5 @@
 .chart {
-  min-width: 300px;
   min-height: 200px;
+  flex: 1 1 30%;
+  min-width: 300px;
 }
